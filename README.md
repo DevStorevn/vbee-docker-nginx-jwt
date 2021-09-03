@@ -1,6 +1,5 @@
 # vbee-docker-nginx-jwt
-[[https://github.com/DevStorevn/vbee-docker-nginx-jwt/blob/master/images/follow.png|alt=octocat]]
-
+![alt text](https://github.com/DevStorevn/vbee-docker-nginx-jwt/blob/master/images/follow.png?raw=true)
 Đây là nginx docker được sửa dụng để download file dựa vào token bản gốc xem tại **https://github.com/max-lt/nginx-jwt-module** Bản hiện tại là bản đã sửa đổi đôi chút so với bản gốc, thêm tính năng chặn theo IP. IP sẽ được nhét vào trong jwt lúc sinh token
 
 >1. Clone git

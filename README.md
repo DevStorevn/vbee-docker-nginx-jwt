@@ -10,11 +10,16 @@
 ** Cần config nginx bên ngoài để trỏ vào nginx bên trong ***
 
 location /secretlink{
-        rewrite ^/secretlink/(.*)/video/(.*)$ /uploads/$2 break;
-        proxy_set_header Authorization "Bearer $1";
-		proxy_set_header Referer "vbee-holding";
-		proxy_set_header Host $http_x_real_ip;
-        proxy_pass  http://localhost:8002;
+
+	rewrite ^/secretlink/(.*)/video/(.*)$ /uploads/$2 break;
+	
+	proxy_set_header Authorization "Bearer $1";
+
+	proxy_set_header Referer "vbee-holding";
+
+	proxy_set_header Host $http_x_real_ip;
+
+	proxy_pass  http://localhost:8002;
 
 }
 

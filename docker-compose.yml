@@ -1,0 +1,25 @@
+version: '2'
+services:
+  jwt-nginx-reffer:
+    image: jwt-nginx:latest
+    container_name: jwt-nginx-reffer
+    restart: always
+    ports:
+        - "8002:8001"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./nginx/keys:/etc/nginx/keys
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/test-jwt-nginx.conf:/etc/nginx/test-jwt-nginx.conf
+      - /home/docker.build/vface/server/uploads:/usr/share/nginx/html/uploads
+      
+    networks:
+      net:
+        ipv4_address: 10.202.8.4
+
+networks:
+ net:
+  ipam:
+   driver: default
+   config:
+   - subnet: 10.202.8.0/24

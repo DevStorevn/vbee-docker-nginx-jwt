@@ -8,7 +8,7 @@
 
 >3. Xem file docker-compose 
 
-** Cần config nginx bên ngoài để trỏ vào nginx bên trong ***
+** Cần config nginx bên ngoài (gọi là nginx firewall như trong hình) để trỏ vào nginx bên trong ***
 
 location /secretlink{
 
@@ -24,5 +24,19 @@ location /secretlink{
 
 }
 
+> Ví Dụ với nginx bên trên https://api.vface.ai/secretlink/eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE3MS4yNDEuNTMuNTMiLCJpYXQiOjE2MzA2NjM2OTcsImV4cCI6MTYzMDY2Mzk5N30.Oei9LRGHcV85Gvhy54gNr5FdymX3jNojiuOcxdyU-RUI-ow9XTkwp18-mCEnBwkX7ZCLxfiM9O-Ep69wfCoxlQqn8YqIwWu7LN38AYhiMDu-xxHNptcAjA2j0w1QGbWqwG-FQJlluhnhHSbHWD8co7WnlZzSCVBTs_JFPPL8iyqyg5aquhumLpT4Na2hzlXknZQMF3WqjiPjMU5stTEN-4U9GmaOotgBtldrOZGaxn77s9wcVBaOct7Q1KVTIrftRe4KTa5vLYLrucxLE-MDGaVXCQvGHmfWorSpH8LrxwRYrS4gGhPa_SIu-ZKoxDr3gRt9CnQ2RuqywoLrZdq0Hg/video/3bcfc50d-3070-4b4a-bb39-c81c89d935be.mp4
 
 Thông tin **proxy_set_header Referer "vbee-holding";** để nguyên nha :v chữ ký của vbee-holding :v anh em xài bản này thì để vậy làm đóng dấu
+
+** Hàm tạo token trên Server backend **
+
+
+function gen_jwt_token({info = {ip:'127.0.0.1'}, expiresIn='1minute'}){
+
+  const privateKey =`-----BEGIN RSA PRIVATE KEY---- Nội dung file key-----END RSA PRIVATE KEY-----`;
+ 
+ return   jwt.sign(info, privateKey, { algorithm: 'RS256',  expiresIn});
+
+}
+
+Cái token sinh ra sẽ được ném vào cái proxy_set_header Authorization "Bearer $1"; 
